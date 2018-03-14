@@ -1,32 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-import Search from './components/search'
-import UserInfo from './components/userInfo'
-import Actions from './components/actions'
-import Repos from './components/repos'
+import AppContent from './components/appContent';
 
-const App = () => (
-  <div className='app'>
-    <Search />
-    <UserInfo />
-    <Actions />
-    <Repos
-      className='repos'
-      title='Repositórios'
-      repos={[{
-        name: 'Nome do repositório',
-        link: '#'
-      }]}
-    />
-    <Repos
-      className='starred'
-      title='Favoritos'
-      repos={[{
-        name: 'Nome do repositório',
-        link: '#'
-      }]}
-    />
-  </div>
-)
+class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+
+    }
+  }
+  render () {
+    return (
+      <AppContent/>
+    )
+  }
+}
 
 export default App
