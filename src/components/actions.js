@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Actions = () => (
+const Actions = ({ handleClick }) => (
   <div className='actions'>
-    <button>Ver repositórios</button>
+    <button
+      onClick={handleClick}>Ver repositórios</button>
     <button>Ver favoritos</button>
   </div>
 )
