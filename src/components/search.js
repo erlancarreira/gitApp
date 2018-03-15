@@ -4,7 +4,7 @@ const Search = () => (
   <div className='search'>
     <input
       type='search'
-      placeholder='Digite o nome do usuário' />
+      placeholder='Digite o nome do usuário no GitHub' />
   </div>
 )
 
