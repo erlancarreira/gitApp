@@ -5,11 +5,11 @@ import UserInfo from './userInfo'
 import Actions from './actions'
 import Repos from './repos'
 
-const AppContent = ({ userInfo, repos, starred, handleSearch, handleClick }) => (
+const AppContent = ({ userInfo, repos, starred, handleSearch, getRepos, getStarred }) => (
   <div className='app'>
     <Search handleSearch={handleSearch} />
     { !!userInfo && <UserInfo userInfo={userInfo} /> }
-    { !!userInfo && <Actions handleClick={handleClick} /> }
+    { !!userInfo && <Actions getRepos={getRepos} getStarred={getStarred} /> }
     { !!repos.length && <Repos
       className='repos'
       title='Repositórios'
@@ -18,7 +18,7 @@ const AppContent = ({ userInfo, repos, starred, handleSearch, handleClick }) => 
     { !!starred.length && <Repos
       className='starred'
       title='Favoritos'
-      repos={repos}
+      repos={starred}
     /> }
   </div>
 )
