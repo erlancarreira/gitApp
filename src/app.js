@@ -13,13 +13,19 @@ class App extends Component {
     }
   }
 
+  getGitHubApiUrl (userName, type) {
+    const internalUser = userName ? `/${userName}` : ''
+    const internalType = type ? `/${type}` : ''
+    return `https://api.github.com/users${internalUser}${internalType}`
+  }
+
   handleSearch (e) {
     const keyCode = e.which || e.keyCode
     const user = e.target.value
     const enter = 13
 
     if (keyCode === enter) {
-      ajax().get(`https://api.github.com/users/${user}`)
+      ajax().get(this.getGitHubApiUrl(user))
         .then(result => {
           this.setState({
             userInfo: {
@@ -35,24 +41,13 @@ class App extends Component {
     }
   }
 
-  getRepos () {
+  getRepos (type) {
     const user = this.state.userInfo.login
-    ajax().get(`https://api.github.com/users/${user}/repos`)
+    ajax().get(this.getGitHubApiUrl(user, type))
       .then(result => {
         console.log(result)
         this.setState({
           repos: result
-        })
-      })
-  }
-
-  getStarred () {
-    const user = this.state.userInfo.login
-    ajax().get(`https://api.github.com/users/${user}/starred`)
-      .then(result => {
-        console.log(result)
-        this.setState({
-          starred: result
         })
       })
   }
@@ -64,8 +59,8 @@ class App extends Component {
         repos={this.state.repos}
         starred={this.state.starred}
         handleSearch={(e) => this.handleSearch(e)}
-        getRepos={() => this.getRepos()}
-        getStarred={() => this.getStarred()}
+        getRepos={() => this.getRepos('repos')}
+        getStarred={() => this.getRepos('starred')}
       />
     )
   }
